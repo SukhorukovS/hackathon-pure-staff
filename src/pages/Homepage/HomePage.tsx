@@ -4,7 +4,7 @@ import { RegistrationForm } from "../../components/RegistrationForm/Registration
 import { DropDownSelect } from "./DropDownSelect/DropDownSelect"
 
 const HomePage = () => {
-  const [formState, setFormState] = useState<string>()
+  const [formState, setFormState] = useState<string>('Company')
 
   return (
     <Layout>
