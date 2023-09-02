@@ -1,36 +1,31 @@
 import { FC } from "react"
-import { observer } from "mobx-react-lite"
 
 import { useForm, SubmitHandler } from "react-hook-form"
+
+import { observer } from "mobx-react-lite"
 
 import { SpecializationEnum } from "../../../store/types"
 import mainStore from "../../../store/mainStore"
 
 interface IFormInput {
-  companyName: string
-  jobTitle: string
+  name: string
   specialization: SpecializationEnum
-  requirements: string
-  payFork: number
+  aboutMe: string
+  technologyStack: string
 }
 
-export const CompanyForm: FC = observer(() => {
+export const EmployerForm: FC = observer(() => {
   const { register, handleSubmit } = useForm<IFormInput>()
 
-  const { specializationList } = mainStore
+  const { specializationList } = mainStore;
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
-      <div className="my-4">
-        <label className="label">Название компании</label>
-        <input {...register("companyName")} className="input" />
-      </div>
-      <div className="my-4">
-        <label className="label">Вакансия</label>
-        <input {...register("jobTitle")} className="input" />
-      </div>
+      <label className="label">ФИО</label>
+      <input {...register("name")} className="input" />
+      <label>Пол</label>
       <div className="my-4">
         <label className="label">Специализация</label>
         <select {...register("specialization")} className="select">
@@ -41,13 +36,12 @@ export const CompanyForm: FC = observer(() => {
       </div>
       <div className="my-4">
         <label className="label">Технологии</label>
-        <input {...register("requirements")} className="input" />
+        <input {...register("technologyStack")} className="input" />
       </div>
       <div className="my-4">
-        <label className="label">Зарплатная вилка</label>
-        <input {...register("payFork")} type="number" className="input" />
+        <label className="label">Обо мне</label>
+        <textarea {...register("aboutMe")} rows={3} className="textarea"></textarea>
       </div>
-
       <div className="my-4">
         <button type="submit" className="submit">
           Войти
