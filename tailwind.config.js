@@ -15,7 +15,7 @@ export default {
         'blue-000': '#21628A',
         'yellow-100': '#FCE385',
         'yellow-200': '#F4BE44',
-        'yellow-200': '#F19236',
+        'yellow-300': '#F19236',
         'red-000': '#FF3838',
         'red-100': '#DE1841',
         'red-200': '#CA1238',
