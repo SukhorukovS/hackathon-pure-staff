@@ -16,7 +16,7 @@ export const RegistrationForm: FC = () => {
   const { register, handleSubmit } = useForm<IFormInput>()
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} >
       <label className="label">First Name</label>
       <input {...register("firstName")} className="input" />
       <label>Пол</label>
