@@ -1,30 +1,39 @@
+import {useEffect} from "react";
+import {observer} from "mobx-react-lite";
 import {Wrapper} from '../../components/CardWrapper/CardWrapper';
 import {CardItem} from "../../components/CardItem/CardItem.tsx";
-
-
-const testerData = [{value: 'waffles', text: ' 🧇 '}, {value: 'waffles', text: ' 🧇 '}, {value: 'waffles', text: ' 🧇 '}, {value: 'waffles', text: ' 🧇 '}, {value: 'waffles', text: ' 🧇 '}, {value: 'waffles', text: ' 🧇 '},]
+import {Layout} from "../../components/Layout/Layout.tsx";
+import mainStore from "../../store/mainStore.ts";
+import {CardContent} from "../../components/CardContent/CardContent.tsx";
 
 
 //vote это направление
 // vote = false лево
 // vote = true право
- const SwiperCardsPage = () => {
+const SwiperCardsPage = observer(() => {
 
-    const onSwipe = (props: unknown, vote: boolean) => {
-        console.log(props, vote)
-    }
+  useEffect(() => {
+    mainStore.getPeople();
+  }, []);
 
-    return (
-        <Wrapper onVote={(item, vote) => onSwipe(item, vote)}>
-            {testerData.map((item, index) => <CardItem key={index} data-value={item.value}>
-                    {item.text}
-                </CardItem>
-            )}
-        </Wrapper>);
-};
+  const onSwipe = (props: unknown, vote: boolean) => {
+    console.log(props, vote)
+  }
+
+  return (
+    <Layout>
+      <Wrapper onVote={(item, vote) => onSwipe(item, vote)}>
+        {mainStore.peopleData?.map((item, index) =>
+          <CardItem key={index} data-value={item.value}>
+            <CardContent {...item} />
+          </CardItem>
+        )}
+      </Wrapper>
+    </Layout>
+  );
+});
 
 export default SwiperCardsPage;
-
 
 
 
