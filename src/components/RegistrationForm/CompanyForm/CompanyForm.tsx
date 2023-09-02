@@ -17,7 +17,7 @@ interface IFormInput {
 export const CompanyForm: FC = observer(() => {
   const { register, handleSubmit } = useForm<IFormInput>()
 
-  const { specializationList } = mainStore
+  const { specializationList, techList } = mainStore
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
 
@@ -41,7 +41,11 @@ export const CompanyForm: FC = observer(() => {
       </div>
       <div className="my-4">
         <label className="label">Технологии</label>
-        <input {...register("requirements")} className="input" />
+        <select {...register("requirements")} className="select" multiple>
+          {techList.map(tech => (
+            <option key={tech} value={tech}>{tech}</option>
+          ))}
+        </select>
       </div>
       <div className="my-4">
         <label className="label">Зарплатная вилка</label>
