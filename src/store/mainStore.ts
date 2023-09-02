@@ -1,9 +1,12 @@
-import { makeAutoObservable, runInAction } from 'mobx';
-import { SpecializationEnum, TechEnum } from './types';
+import {makeAutoObservable} from 'mobx';
+import {IPeopleData, SpecializationEnum, TechEnum} from './types';
+import { requestGetPeople} from "../api";
 
 class MainStore {
+  peopleData: IPeopleData[] = []
+
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
+    makeAutoObservable(this, {}, {autoBind: true});
   }
 
   specializationList: SpecializationEnum[] = [
@@ -33,6 +36,18 @@ class MainStore {
     TechEnum.Swift,
     TechEnum.Vue
   ]
+
+  getPeople() {
+    try {
+      requestGetPeople().then((data) => {
+        this.peopleData = (data as IPeopleData[])
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+
 }
 
 const mainStore = new MainStore();

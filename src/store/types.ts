@@ -25,3 +25,11 @@ export enum TechEnum {
   'Python' = 'Python',
   'Swift' = 'Swift'
 }
+
+export interface IPeopleData {
+  value: number;
+  img: string;
+  name: string;
+  age: string;
+  directions: string,
+}
