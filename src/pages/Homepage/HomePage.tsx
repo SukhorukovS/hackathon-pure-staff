@@ -1,16 +1,10 @@
-import { useForm, SubmitHandler } from "react-hook-form"
+import { RegistrationForm } from "../../components/RegistrationForm/RegistrationForm"
 
 const HomePage = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>()
-  
+
   return (
     <div className="container">
-      Главная
+      <RegistrationForm />
     </div>
   )
 }
