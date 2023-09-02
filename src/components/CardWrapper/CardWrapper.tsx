@@ -20,7 +20,7 @@ export const Wrapper: React.FC<WrapperProps> = ({onVote, children, ...props}) =>
     }
 
     return (
-        <div className="w-2/3 h-full flex justify-center  items-center relative overflow-hidden" {...props}>
+        <div className="w-2/3 h-full flex justify-center relative overflow-hidden mr-auto ml-auto" {...props}>
             {stack.map((item, index) => {
                 const isTop = index === stack.length - 1
                 return (

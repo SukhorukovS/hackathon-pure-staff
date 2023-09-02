@@ -85,14 +85,14 @@ export const CardContainerAnimation: FC<CardIItemProps> = ({children, onVote, ..
 
     return (
         <motion.div
-            className="absolute"
+            className="absolute h-2/3 w-10/12 mr-auto ml-auto "
             animate={controls}
             dragConstraints={constrained && {left: 0, right: 0, top: 0, bottom: 0}}
             dragElastic={1}
             ref={cardElem}
             style={{x}}
             onDrag={getTrajectory}
-            onDragEnd={() => flyAway(300)}
+            onDragEnd={() => flyAway(100)}
             whileTap={{scale: 1.1}}
             {...props}
         >
