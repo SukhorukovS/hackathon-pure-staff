@@ -1,5 +1,7 @@
 // fake
 
+import { postFetchCamelCase } from "../utils/fetch"
+
 export const requestGetPeople =  async () => {
   return new Promise(resolve => setTimeout(() => {
     resolve([
@@ -26,4 +28,12 @@ export const requestGetPeople =  async () => {
       },
     ])
   }, 10))
+}
+
+export const regAsVacancy = async (values) => {
+  try {
+    return postFetchCamelCase('http://localhost:8000/api/v1/vacancies', values)
+  } catch (error) {
+    console.error(error)
+  }
 }

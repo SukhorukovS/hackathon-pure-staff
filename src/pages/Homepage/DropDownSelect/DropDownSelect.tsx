@@ -34,13 +34,13 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute top-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute top-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-600 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="px-1 py-1 ">
                 <Menu.Item>
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? 'bg-blue-300 text-white' : 'text-gray-800'
+                        active ? 'bg-blue-300 text-white' : 'text-gray-800 dark:bg-gray-600 dark:text-white'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       onClick={() => setForm('Company')}
                     >
@@ -51,7 +51,7 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
                         />
                       ) : (
                         <ArchiveBoxIcon
-                          className="mr-2 h-5 w-5 text-blue-300"
+                          className="mr-2 h-5 w-5 text-blue-300 dark:text-white"
                           aria-hidden="true"
                         />
                       )}
@@ -63,7 +63,7 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? 'bg-blue-300 text-white' : 'text-gray-800'
+                        active ? 'bg-blue-300 text-white' : 'text-gray-800 dark:bg-gray-600 dark:text-white'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       onClick={() => setForm('Employer')}
                     >
@@ -74,7 +74,7 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
                         />
                       ) : (
                         <AcademicCapIcon
-                          className="mr-2 h-5 w-5 text-blue-300"
+                          className="mr-2 h-5 w-5 text-blue-300 dark:text-white"
                           aria-hidden="true"
                         />
                       )}
