@@ -43,7 +43,7 @@ export const CardContent: FC<CardContentProps> = ({
   return (
     <div className=" w-full h-full relative rounded-3xl border-blue-200  ">
       <ImgContentInnerDiv
-        img={photo || 'https://images.unsplash.com/photo-1560547126-ccd9d56db8af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2836&q=80'}
+        img={photo}
         className="rounded-2xl border-4"
       />
       <div className=" absolute p-4 w-full bottom-0">
