@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import {IPeopleData, SpecializationEnum, TechEnum} from './types';
 import {requestGetPeople} from "../api";
 
@@ -8,6 +8,10 @@ class MainStore {
   }
 
   peopleData: IPeopleData[] = []
+
+  companyId: string | null = null;
+
+  staffId: string | null = null;
 
   specializationList: SpecializationEnum[] = [
     SpecializationEnum.Back,
@@ -46,7 +50,17 @@ class MainStore {
     }
   }
 
+  setCompanyId(companyId: string) {
+    runInAction(() => {
+      this.companyId = companyId
+    })
+  }
 
+  setStaffId(staffId: string) {
+    runInAction(() => {
+      this.staffId = staffId
+    })
+  }
 }
 
 const mainStore = new MainStore();
