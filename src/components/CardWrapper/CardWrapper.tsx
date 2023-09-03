@@ -6,7 +6,7 @@ type WrapperProps = {
 } & PropsWithChildren
 
 export const Wrapper: React.FC<WrapperProps> = ({onVote, children, ...props}) => {
-    const [stack, setStack] = useState<React.ReactNode[]>(Children.toArray(children))
+    const [stack, setStack] = useState<React.ReactNode[]>(Children.toArray(children));
 
     const pop = (array: unknown[]) => {
         return array.filter((_, index) => {

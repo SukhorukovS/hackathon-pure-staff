@@ -25,5 +25,5 @@ export const requestGetPeople =  async () => {
         directions: 'Frontend(React)',
       },
     ])
-  }, 100))
+  }, 10))
 }

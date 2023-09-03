@@ -1,13 +1,13 @@
 import {makeAutoObservable} from 'mobx';
 import {IPeopleData, SpecializationEnum, TechEnum} from './types';
-import { requestGetPeople} from "../api";
+import {requestGetPeople} from "../api";
 
 class MainStore {
-  peopleData: IPeopleData[] = []
-
   constructor() {
     makeAutoObservable(this, {}, {autoBind: true});
   }
+
+  peopleData: IPeopleData[] = []
 
   specializationList: SpecializationEnum[] = [
     SpecializationEnum.Back,
@@ -37,11 +37,10 @@ class MainStore {
     TechEnum.Vue
   ]
 
-  getPeople() {
+  async getPeople() {
     try {
-      requestGetPeople().then((data) => {
-        this.peopleData = (data as IPeopleData[])
-      })
+      const data = await requestGetPeople();
+      this.peopleData = data as IPeopleData[]
     } catch (e) {
       console.error(e)
     }
