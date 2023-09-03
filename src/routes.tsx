@@ -1,9 +1,8 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
+import {createBrowserRouter,} from "react-router-dom";
 
 import HomePage from "./pages/Homepage/HomePage.tsx";
-import SwiperCardsPage from "./pages/SwiperCardsPage/SwiperCardsPage.tsx";
+import {FindPeoplePage} from "./pages/findPeoplePage/FindPeoplePage.tsx";
+import {FindVacancyPage} from "./pages/FindeVacancyPage/FindVacancyPage.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +10,11 @@ export const router = createBrowserRouter([
     element: <HomePage/>,
   },
   {
-    path: "/card",
-    element: <SwiperCardsPage/>,
+    path: "/find-people",
+    element: <FindPeoplePage/>,
+  },
+  {
+    path: "/find-vacancy",
+    element: <FindVacancyPage/>,
   },
 ]);

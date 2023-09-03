@@ -9,7 +9,7 @@ type CardContentProps = {
   directions?: string;
   description?: string;
 };
-export const CardContent: FC<CardContentProps> = ({name, img, age, directions}) => {
+export const CardContent: FC<CardContentProps> = ({name, img, age, directions, description}) => {
   return (
     <div className=" w-full h-full rounded-3xl relative">
       <ImgContentInnerDiv img={img} className="rounded"/>
@@ -25,10 +25,13 @@ export const CardContent: FC<CardContentProps> = ({name, img, age, directions}) 
             </div>
           </div>
           <button
-            className="relative"
+            className="btn-none outline-0 focus:outline-none outline-inherit  border-none"
             type="button">
             <Info/>
           </button>
+        </div>
+        <div className="overflow-hidden h-24 ">
+          {description}
         </div>
       </div>
     </div>
