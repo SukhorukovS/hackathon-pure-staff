@@ -1,5 +1,6 @@
 import { FC, Fragment } from "react"
 import { observer } from "mobx-react-lite"
+import { useNavigate } from 'react-router-dom';
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Listbox, Transition } from '@headlessui/react'
@@ -10,7 +11,6 @@ import mainStore from "../../../store/mainStore"
 import { regAsVacancy } from "../../../api"
 
 interface IFormInput {
-  // companyName: string
   jobTitle: string
   specialization: SpecializationEnum
   requirements: string[]
@@ -25,19 +25,18 @@ export const CompanyForm: FC = observer(() => {
     watch
   } = useForm<IFormInput>();
 
-  const { specializationList, techList } = mainStore
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    data.payFork = Number(data.payFork)
-    regAsVacancy(data);
+  const { specializationList, techList, setCompanyId } = mainStore
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const response = await regAsVacancy(data);
+    setCompanyId(response.id)
+    navigate('/find-people')
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
-      {/* <div className="my-4">
-        <label className="label">Название компании</label>
-        <input {...register("companyName")} className="input" />
-      </div> */}
       <div className="my-4">
         <label className="label">Вакансия</label>
         <input {...register("jobTitle")} className="input" />

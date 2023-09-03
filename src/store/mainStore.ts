@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import {ICompanyData, IPeopleData, IStateCompanyData, IStatePeopleData, SpecializationEnum, TechEnum} from './types';
 import {requestGetCompany, requestGetPeople} from "../api";
 import {AxiosResponse} from "axios";
@@ -19,6 +19,10 @@ class MainStore {
     error: '',
     data: [],
   }
+
+  companyId: string | null = null;
+
+  staffId: string | null = null;
 
   specializationList: SpecializationEnum[] = [
     SpecializationEnum.Back,
@@ -76,6 +80,17 @@ class MainStore {
     }
   }
 
+  setCompanyId(companyId: string) {
+    runInAction(() => {
+      this.companyId = companyId
+    })
+  }
+
+  setStaffId(staffId: string) {
+    runInAction(() => {
+      this.staffId = staffId
+    })
+  }
 }
 
 const mainStore = new MainStore();

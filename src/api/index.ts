@@ -43,9 +43,21 @@ export const requestGetCompany = () => {
   }
 }
 
-export const regAsVacancy = async () => {
+
+export const regAsVacancy = async (values) => {
   try {
-    return postFetchCamelCase('http://localhost:8000/api/v1/vacancies', {})
+    const response = await postFetchCamelCase('http://localhost:8000/api/v1/vacancies', values);
+
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const regAsStaff = async (values) => {
+  try {
+    const response = await postFetchCamelCase('http://localhost:8000/api/v1/staff', values)
+    return response.data
   } catch (error) {
     console.error(error)
   }

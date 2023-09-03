@@ -1,4 +1,5 @@
 import { FC, Fragment } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { observer } from "mobx-react-lite"
@@ -7,6 +8,7 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 
 import { SpecializationEnum } from "../../../store/types"
 import mainStore from "../../../store/mainStore"
+import { regAsStaff } from "../../../api"
 
 interface IFormInput {
   name: string
@@ -16,11 +18,16 @@ interface IFormInput {
 }
 
 export const EmployerForm: FC = observer(() => {
+  const navigate = useNavigate()
   const { register, handleSubmit, setValue, watch } = useForm<IFormInput>()
 
-  const { specializationList, techList } = mainStore;
+  const { specializationList, techList, setStaffId } = mainStore;
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<IFormInput> = async(data) => {
+    const response = await regAsStaff(data);
+    setStaffId(response.id)
+    navigate('/find-vacancy')
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
