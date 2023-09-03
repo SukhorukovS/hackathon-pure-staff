@@ -4,7 +4,7 @@
 
 @layer components {
   .input {
-    @apply flex dark:bg-gray-opacity rounded-md shadow-sm ring-1 ring-inset ring-gray-300 px-4 py-2 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 focus:ring-0 w-full;
+    @apply flex dark:bg-gray-opacity dark:text-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 px-4 py-2 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 focus:ring-0 w-full;
   }
 
   .submit {

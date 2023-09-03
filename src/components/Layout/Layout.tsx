@@ -4,7 +4,7 @@ import { Header } from "./Header/Header"
 
 export const Layout: FC<PropsWithChildren> = ({children}) => {
   return (
-    <div className="container">
+    <div className="container dark:bg-gray-800">
       <Header />
       {children}
     </div>
