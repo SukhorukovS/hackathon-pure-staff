@@ -1,7 +1,8 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { observer } from "mobx-react-lite"
 
 import { useForm, SubmitHandler } from "react-hook-form"
+import { Listbox } from '@headlessui/react'
 
 import { SpecializationEnum } from "../../../store/types"
 import mainStore from "../../../store/mainStore"
@@ -18,6 +19,8 @@ export const CompanyForm: FC = observer(() => {
   const { register, handleSubmit } = useForm<IFormInput>()
 
   const { specializationList, techList } = mainStore
+
+  const [selectedItems, setSelectedItems] = useState<string[]>([techList[0]])
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
 
@@ -41,11 +44,18 @@ export const CompanyForm: FC = observer(() => {
       </div>
       <div className="my-4">
         <label className="label">Технологии</label>
-        <select {...register("requirements")} className="select" multiple>
-          {techList.map(tech => (
-            <option key={tech} value={tech}>{tech}</option>
-          ))}
-        </select>
+        <Listbox as='div' {...register("requirements")}  value={selectedItems} onChange={setSelectedItems} multiple>
+          <Listbox.Button>
+            {selectedItems?.map((item) => item).join(', ')}
+          </Listbox.Button>
+          <Listbox.Options>
+            {techList.map(item => (
+              <Listbox.Option key={item} value={item}>
+                {item}
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </Listbox>
       </div>
       <div className="my-4">
         <label className="label">Зарплатная вилка</label>
