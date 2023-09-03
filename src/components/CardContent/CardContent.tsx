@@ -4,7 +4,7 @@ import {ReactComponent as Info} from "../../assets/Icon/info.svg";
 
 
 const getStack = (technologyStack, requirements) => {
-  const lexiocon =' Стэк технологий: ';
+  const lexiocon = ' Стэк технологий: ';
   if (requirements?.length > 0) {
     return `${lexiocon}  ${requirements?.join(' / ')}`
   } else if (technologyStack?.length > 0) {
@@ -18,44 +18,47 @@ type CardContentProps = {
   specialization?: string;
   directions?: string;
   description?: string;
-  about_me?: string;
+  aboutMe?: string;
   requirements?: string[];
   payFork?: string;
   technologyStack?: string[];
+  jobTitle?: string;
 
 };
 export const CardContent: FC<CardContentProps> = ({
                                                     payFork,
                                                     name,
                                                     photo,
-                                                    about_me,
+                                                    aboutMe,
                                                     specialization,
                                                     directions,
                                                     description,
                                                     requirements,
                                                     technologyStack,
+                                                    jobTitle,
                                                   }) => {
 
   const [detailinfo, setDetailinfo] = useState(false);
 
   const detailInfoControl = () => setDetailinfo(prevState => !prevState)
 
+
   return (
     <div className=" w-full h-full relative rounded-3xl border-blue-200  ">
       <ImgContentInnerDiv
-        img={photo}
+        img={photo?.replace('https://cloud.mail.ru/public/LdCP/Exo9vEuh1/', 'https://thumb.cloud.mail.ru/weblink/thumb/xw1/LdCP/Exo9vEuh1/')}
         className="rounded-2xl border-4"
       />
       <div className=" absolute p-4 w-full bottom-0">
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-end">
-              <h2 className="text-xl font-semibold mr-3">{name}</h2>
-              <h3 className="font-semibold text-xl">{specialization}</h3>
+              <h2 className="text-xl font-semibold mr-3 text-white">{name || jobTitle}</h2>
+              <h3 className="font-semibold text-xl text-white">{specialization}</h3>
             </div>
             <div className="block">
-              <div>{technologyStack?.join(' / ') || requirements?.join(' / ')} {payFork && `${payFork}$`}</div>
-              <h4 className="block">{directions}</h4>
+              <div className="text-white">{technologyStack?.join(' / ') || requirements?.join(' / ')} {payFork && `${payFork}$`}</div>
+              <h4 className="block text-white">{directions}</h4>
             </div>
           </div>
           <button
@@ -65,10 +68,10 @@ export const CardContent: FC<CardContentProps> = ({
             <Info/>
           </button>
         </div>
-        {!detailinfo && description || about_me &&
+        {!detailinfo && description || aboutMe &&
           <>
-            <div className="overflow-hidden h-10">
-              {description || about_me}
+            <div className="overflow-hidden h-12 text-white">
+              {description || aboutMe}
             </div>
             <button
               type="button" onClick={detailInfoControl}
@@ -85,7 +88,7 @@ export const CardContent: FC<CardContentProps> = ({
           <div>
             {getStack(technologyStack, requirements)}
           </div>
-          {description || about_me}
+          {description || aboutMe}
         </div>
       }
     </div>
