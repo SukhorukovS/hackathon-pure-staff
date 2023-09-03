@@ -3,22 +3,47 @@ import {observer} from "mobx-react-lite";
 import mainStore from "../../store/mainStore.ts";
 import {Layout} from "../../components/Layout/Layout.tsx";
 import {SwiperCards} from "../../components/SwiperCards/SwiperCards.tsx";
+import {Loader} from "../../components/Loader/Loader.tsx";
 
 export const FindVacancyPage = observer(() => {
-  const {getPeople, peopleData} = mainStore
+  const {
+    getCompany, companyData: {
+      loading, data
+    }
+  } = mainStore
 
   useEffect(() => {
-    getPeople();
+    getCompany();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (loading) {
+    return (
+      <div className="flex  justify-center items-center h-full">
+        <Loader className="text-center"/>
+      </div>
+    )
+  }
 
-  if (peopleData.length === 0) {
+  if (data.length === 0) {
     return <></>
   }
 
+  const like = (id: string) => {
+    return id;
+  }
+
+  const dislike = (id: string) => {
+    return id;
+  }
+
+
   return (
     <Layout>
-      <SwiperCards data={peopleData}/>
+      <SwiperCards
+        disLikeCallback={dislike}
+        likeCallback={like}
+        data={data}
+      />
     </Layout>
   );
 });
