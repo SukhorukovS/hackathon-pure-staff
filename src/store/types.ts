@@ -26,10 +26,40 @@ export enum TechEnum {
   'Swift' = 'Swift'
 }
 
+export interface IState {
+  loading: boolean;
+  error: unknown;
+}
+
+export interface IStatePeopleData extends IState {
+  data: IPeopleData[]
+}
+
 export interface IPeopleData {
-  value: number;
-  img: string;
+  id: string;
+  photo: string;
   name: string;
-  age: string;
-  directions: string,
+  specialization: string;
+  technologyStack: string[];
+  aboutMe: string;
+}
+
+export interface IStateCompanyData extends IState{
+ data: ICompanyData[];
+}
+
+export interface ICompanyData {
+  id: string;
+  rating: number;
+  foundation: number;
+  specialization: string;
+  description: string;
+  url: string;
+  photo: string;
+}
+
+export interface IResponse  {
+  elements: unknown[];
+  size: number;
+  total_page: number;
 }

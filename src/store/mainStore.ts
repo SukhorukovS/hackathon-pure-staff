@@ -1,13 +1,24 @@
 import {makeAutoObservable} from 'mobx';
-import {IPeopleData, SpecializationEnum, TechEnum} from './types';
-import {requestGetPeople} from "../api";
+import {ICompanyData, IPeopleData, IStateCompanyData, IStatePeopleData, SpecializationEnum, TechEnum} from './types';
+import {requestGetCompany, requestGetPeople} from "../api";
+import {AxiosResponse} from "axios";
 
 class MainStore {
   constructor() {
     makeAutoObservable(this, {}, {autoBind: true});
   }
 
-  peopleData: IPeopleData[] = []
+  peopleData: IStatePeopleData = {
+    loading: false,
+    error: '',
+    data: [],
+  }
+
+  companyData: IStateCompanyData = {
+    loading: false,
+    error: '',
+    data: [],
+  }
 
   specializationList: SpecializationEnum[] = [
     SpecializationEnum.Back,
@@ -38,14 +49,32 @@ class MainStore {
   ]
 
   async getPeople() {
+    this.peopleData.loading = true;
     try {
-      const data = await requestGetPeople();
-      this.peopleData = data as IPeopleData[]
+      const {data} = await requestGetPeople() as AxiosResponse;
+      const {elements} = data
+      this.peopleData.data = elements as IPeopleData[];
+      this.peopleData.loading = false;
     } catch (e) {
-      console.error(e)
+      this.peopleData.error = e;
+      this.peopleData.loading = false;
+      console.error(e);
     }
   }
 
+  async getCompany() {
+    this.companyData.loading = true;
+    try {
+      const {data} = await requestGetCompany() as AxiosResponse;
+      const {elements} = data
+      this.companyData.data = elements as ICompanyData[];
+      this.companyData.loading = false;
+    } catch (e) {
+      this.companyData.error = e;
+      this.companyData.loading = false;
+      console.error(e);
+    }
+  }
 
 }
 

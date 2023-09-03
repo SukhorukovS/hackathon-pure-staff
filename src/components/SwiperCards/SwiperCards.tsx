@@ -1,27 +1,32 @@
-import {FC} from "react";
+import {FC, ReactElement} from "react";
 import {Wrapper} from '../CardWrapper/CardWrapper.tsx';
 import {CardItem} from "../CardItem/CardItem.tsx";
 import {CardContent} from "../CardContent/CardContent.tsx";
-import {IPeopleData} from "../../store/types.ts";
+import {ICompanyData, IPeopleData} from "../../store/types.ts";
 
 
 type SwiperCardsProps = {
-  data: IPeopleData[]
+  data: IPeopleData[] | ICompanyData[];
+  likeCallback?: (id: string) => void;
+  disLikeCallback?: (id: string) => void;
 }
-export const SwiperCards: FC<SwiperCardsProps> = ({data}) => {
-  const onSwipe = (props: unknown, vote: boolean) => {
-    if (vote) {
-      // like callback
-    } else {
-      // dislike callback
+export const SwiperCards: FC<SwiperCardsProps> = ({data, likeCallback, disLikeCallback}) => {
+  const onSwipe = (card: unknown, vote: boolean) => {
+    const {props} = card as ReactElement
+    const id = props['data-value' as keyof typeof props];
+    if (likeCallback !== undefined && disLikeCallback !== undefined) {
+      if (vote) {
+        likeCallback(id);
+      } else {
+        disLikeCallback(id);
+      }
     }
-    console.log(props, vote)
   }
 
   return (
     <Wrapper onVote={(item, vote) => onSwipe(item, vote)}>
       {data?.map((item, index) =>
-        <CardItem key={index} data-value={item.value}>
+        <CardItem key={`_${index}`} data-value={item.id}>
           <CardContent {...item} />
         </CardItem>
       )}
