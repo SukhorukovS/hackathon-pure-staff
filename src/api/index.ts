@@ -4,14 +4,14 @@ import {postFetchCamelCase, requestPeople} from "../utils/fetch"
 
 export const requestGetPeople =  async () => {
   try {
-    return requestPeople('http://localhost:8000/api/v1/staff?page=1&size=10', {})
+    return requestPeople('http://localhost:8000/api/v1/staff?page=0&size=10', {})
   } catch (e) {
     console.error(e);
   }
   // return new Promise(resolve => setTimeout(() => {
   //   resolve([
   //     {
-  //       img: 'https://images.unsplash.com/photo-1630254688956-40da9f30216a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80',
+  //       img: '',
   //       value: 1212,
   //       name: 'Bruno',
   //       age: '28',
@@ -37,7 +37,7 @@ export const requestGetPeople =  async () => {
 
 export const requestGetCompany = () => {
   try {
-    return requestPeople('http://localhost:8000/api/v1/companies?page=1&size=10', {})
+    return requestPeople('http://localhost:8000/api/v1/vacancies?page=0&size=10', {})
   } catch (e) {
     console.error(e);
   }

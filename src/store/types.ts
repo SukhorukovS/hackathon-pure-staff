@@ -51,11 +51,14 @@ export interface IStateCompanyData extends IState{
 export interface ICompanyData {
   id: string;
   rating: number;
+  company: string | null;
+  jobTitle: string;
   foundation: number;
   specialization: string;
+  requirements: string[];
   description: string;
-  url: string;
   photo: string;
+  payFork: number;
 }
 
 export interface IResponse  {
