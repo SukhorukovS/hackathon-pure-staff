@@ -66,3 +66,8 @@ export interface IResponse  {
   size: number;
   total_page: number;
 }
+
+export interface IMatchPeople {
+  entity: Record<string, string>;
+  matches: boolean;
+}

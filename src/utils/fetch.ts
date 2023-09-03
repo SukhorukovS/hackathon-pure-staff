@@ -151,11 +151,7 @@ export const putFetchCamelCase = (
   requestTimeout = null,
 ) => doRequest(_merge({ url, method: 'put', data }, {}), true, requestTimeout);
 
-export const requestPeople = ( url: string, data: any, requestTimeout = null) => {
+export const requestGet = ( url: string, data: any, requestTimeout = null) => {
   return doRequest(_merge({ url, method: 'get', data }, {}), true, requestTimeout);
 }
 
-
-export const requestCompany = ( url: string, data: any, requestTimeout = null) => {
-  return doRequest(_merge({ url, method: 'get', data }, {}), true, requestTimeout);
-}

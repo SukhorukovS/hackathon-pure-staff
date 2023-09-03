@@ -1,10 +1,10 @@
 // fake
 
-import {postFetchCamelCase, requestPeople} from "../utils/fetch"
+import {getFetch, postFetchCamelCase, requestGet} from "../utils/fetch"
 
-export const requestGetPeople =  async () => {
+export const requestGetPeople = async () => {
   try {
-    return requestPeople('http://localhost:8000/api/v1/staff?page=0&size=10', {})
+    return requestGet('http://localhost:8000/api/v1/staff?page=0&size=10', {})
   } catch (e) {
     console.error(e);
   }
@@ -37,7 +37,7 @@ export const requestGetPeople =  async () => {
 
 export const requestGetCompany = () => {
   try {
-    return requestPeople('http://localhost:8000/api/v1/vacancies?page=0&size=10', {})
+    return requestGet('http://localhost:8000/api/v1/vacancies?page=0&size=10', {})
   } catch (e) {
     console.error(e);
   }
@@ -61,4 +61,23 @@ export const regAsStaff = async (values) => {
   } catch (error) {
     console.error(error)
   }
+}
+
+
+export const matchPeople = async (staffId: string, vacancyId: string) => {
+  return await getFetch(`http://localhost:8000/api/v1/matches/result-with-staff/${staffId}`, {}, {
+    headers: {
+      'Cache-Control': 'no-cache',
+      vacancy_id: vacancyId
+    }
+  })
+}
+
+export const matchVacancy = async (staffId: string, vacancyId: string) => {
+  return await getFetch(`http://localhost:8000/api/v1/matches/result-with-vacancy/${vacancyId}`, {}, {
+    headers: {
+      'Cache-Control': 'no-cache',
+      staff_id: staffId
+    }
+  })
 }
