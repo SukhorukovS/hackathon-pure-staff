@@ -12,13 +12,13 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
       <Menu as="div" className="relative my-0 mx-auto text-left">
         <div className="flex justify-center">
           <Menu.Button
-            className="flex w-56 justify-center self-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            className="flex w-56 justify-center self-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-white dark:text-gray-200 hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           >
             {({open}) => (
               <>
                 Войти как:
                 <ChevronDownIcon
-                  className={`ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100 ${open && 'rotate-180'}`}
+                  className={`ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100 dark:text-gray-200 ${open && 'rotate-180'}`}
                   aria-hidden="true"
                 />
               </>
@@ -40,18 +40,18 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? 'bg-blue-300 text-white' : 'text-gray-800 dark:bg-gray-600 dark:text-white'
+                        active ? 'bg-blue-300 text-white dark:text-gray-200' : 'text-gray-800 dark:bg-gray-600 dark:text-gray-200'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       onClick={() => setForm('Company')}
                     >
                       {active ? (
                         <ArchiveBoxIcon
-                          className="mr-2 h-5 w-5 text-white"
+                          className="mr-2 h-5 w-5 text-gray-200"
                           aria-hidden="true"
                         />
                       ) : (
                         <ArchiveBoxIcon
-                          className="mr-2 h-5 w-5 text-blue-300 dark:text-white"
+                          className="mr-2 h-5 w-5 text-blue-300 dark:text-gray-200"
                           aria-hidden="true"
                         />
                       )}
@@ -63,18 +63,18 @@ export const DropDownSelect: FC<{setForm: (member: string) => void}> = ({setForm
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? 'bg-blue-300 text-white' : 'text-gray-800 dark:bg-gray-600 dark:text-white'
+                        active ? 'bg-blue-300 text-white' : 'text-gray-800 dark:bg-gray-600 dark:text-gray-200'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       onClick={() => setForm('Employer')}
                     >
                       {active ? (
                         <AcademicCapIcon
-                          className="mr-2 h-5 w-5 text-white"
+                          className="mr-2 h-5 w-5 text-gray-200"
                           aria-hidden="true"
                         />
                       ) : (
                         <AcademicCapIcon
-                          className="mr-2 h-5 w-5 text-blue-300 dark:text-white"
+                          className="mr-2 h-5 w-5 text-blue-300 dark:text-gray-200"
                           aria-hidden="true"
                         />
                       )}
